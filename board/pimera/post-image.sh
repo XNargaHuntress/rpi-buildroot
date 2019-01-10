@@ -11,6 +11,10 @@ if [ -f ${DEPLOY_DIR}/pico.pi ]; then
 fi
 
 mkdir -p ${DEPLOY_DIR}
+
+dd if=/dev/zero of=${DEPLOY_DIR}/piusb.bin bs=512 count=32768
+mkdosfs ${DEPLOY_DIR}/piusb.bin -n PIMERA
+
 cp ${BINARIES_DIR}/*.dtb ${DEPLOY_DIR}
 cp ${BINARIES_DIR}/rpi-firmware/* ${DEPLOY_DIR}
 cp ${BINARIES_DIR}/zImage ${DEPLOY_DIR}/pico.pi

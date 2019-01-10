@@ -22,6 +22,7 @@
 # now run any rc scripts
 ::sysinit:/etc/init.d/rcS
 ::sysinit:/usr/sbin/preco8
+::sysinit:/usr/sbin/pimerausb
 ::sysinit:/usr/sbin/pico8
 ::sysinit:/sbin/poweroff
 

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+MOUNTOPTS="-t vfat -o loop,rw,umask=000"
+RUNNINGSETUP=1
+
+try_mount_local()
+{
+	[ ${RUNNINGSETUP} ] && \
+	    [ -a $1 ] && \
+	    /bin/mount ${MOUNTOPTS} $1 $2 && \
+	    export RUNNINGSETUP=0
+
+	return ${RUNNINGSETUP}
+}
+
+try_usb_mass_storage()
+{
+	[ ${RUNNINGSETUP} ] && \
+	    [ -a $1 ] && \
+	    /bin/modprobe dwc2 && \
+	    /bin/modprobe g_mass_storage file=$1 stall=0 && \
+	    export RUNNINGSETUP=0
+
+	return ${RUNNINGSETUP}
+}
+
+while [ ${RUNNINGSETUP} -eq 1 ]; do
+	try_mount_local /mnt/piusb.bin /mnt/pico-8/carts
+done
+
+RUNNINGSETUP=1
+while [ ${RUNNINGSETUP} -eq 1 ]; do
+	try_usb_mass_storage /mnt/piusb.bin
+done
