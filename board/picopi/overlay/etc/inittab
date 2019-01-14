@@ -23,7 +23,6 @@
 ::sysinit:/etc/init.d/rcS
 ::sysinit:/usr/sbin/preco8
 ::sysinit:/usr/sbin/pico8
-::sysinit:/sbin/poweroff
 
 ttyAMA0::respawn:/sbin/getty -L  ttyAMA0 0 vt100 # GENERIC_SERIAL
 

@@ -10,6 +10,7 @@ splore=on
 display_rotate=2
 dtoverlay=pwm-2chan,pin=18,func=2,pin2=13,func2=4
 dtoverlay=pimera-gamepad
+dtoverlay=dwc2
 hdmi_cvt=128 128 60 1 0 0 0
 hdmi_force_hotplug=1
 hdmi_group=2
